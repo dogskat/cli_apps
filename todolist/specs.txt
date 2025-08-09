@@ -1,0 +1,4 @@
+
+To-Dos:
+* add way to modify priorities
+* find edge cases

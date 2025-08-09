@@ -20,15 +20,17 @@ def mycommands():
 def main(name):
     click.echo(f"Hello, {name}, from todolist!")
 
+
 @click.command()
 @click.argument("priority", type=click.Choice(PRIORITIES.keys()), default="m")
 @click.argument("todofile", type=click.Path(exists=False), required=0)
 @click.option("-n", "--name", prompt="Enter the todo name", help="The name of todo item")
 @click.option("-d", "--desc", prompt="Describe todo", help="The description of todo")
-def add_todo(name, description, priority, todofile):
+def add_todo(name, desc, priority, todofile):
     filename = todofile if todofile is not None else "mytodos.txt"
     with open(filename, "a+") as f:
-        f.write(f"{name}: {description} [Priority: {PRIORITIES[priority]}")
+        f.write(f"{name}: {desc} [Priority: {PRIORITIES[priority]}]")
+        f.write("\n")
 
 
 @click.command()
@@ -49,6 +51,8 @@ def list_todos(priority, todofile):
     filename = todofile if todofile is not None else "mytodos.txt"
     with open(filename, "r") as f:
         todo_list = f.read().splitlines()
+    if not todo_list or todo_list == [""]:
+        print("No todos found!!")
     if priority is None:
         for idx, todo in enumerate(todo_list):
             print(f"({idx}) - {todo}")
