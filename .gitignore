@@ -4,3 +4,4 @@ __pycache__
 .python-version
 .venv
 todolist/mytodos.txt
+_notes
