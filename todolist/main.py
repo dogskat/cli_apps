@@ -15,6 +15,10 @@ def mycommands():
     pass
 
 
+@click.command()
+@click.option("--name", prompt="Enter your name: ", help="your name")
+def main(name):
+    click.echo(f"Hello, {name}, from todolist!")
 
 @click.command()
 @click.argument("priority", type=click.Choice(PRIORITIES.keys()), default="m")
@@ -54,17 +58,11 @@ def list_todos(priority, todofile):
                 print(f"({idx}) - {todo}")
 
 
-@click.command()
-@click.option("--name", prompt="Enter your name: ", help="your name")
-def main(name):
-    click.echo(f"Hello, {name}, from todolist!")
-
-
-#mycommands.add_command(main)
+mycommands.add_command(main)
 mycommands.add_command(add_todo)
 mycommands.add_command(delete_todo)
 mycommands.add_command(list_todos)
 
 
 if __name__ == "__main__":
-    main()
+    mycommands()
