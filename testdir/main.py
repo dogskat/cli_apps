@@ -1,5 +1,5 @@
 def main():
-    print("Hello from cli-apps!")
+    print("Hello from testdir!")
 
 
 if __name__ == "__main__":
